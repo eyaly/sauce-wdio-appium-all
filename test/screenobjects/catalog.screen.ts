@@ -9,25 +9,11 @@ class CatalogScreen extends AppScreen {
 
     constructor () {
         
-        if (driver.isAndroid) {
+        if (driver.isAndroid)
             super('~Scrollview manages views in given screen size');
-        }
-        else {   
+        else    
             super('~Catalog-screen');
-        }
     }
-
-    /**
-     * define selectors using getter methods
-     */
-    // public get allProductsOfCatalog () {
-    //     return $('com.saucelabs.mydemoapp.android:id/productRV');
-    // }
-    //
-    // public get firstProductOfCatalog () {
-    //     return $('~Sauce Labs Backpack');
-    // }
-
 
     public async selectProduct (productName: string) {
 

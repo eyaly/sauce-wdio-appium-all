@@ -11,12 +11,18 @@ class MenuScreen extends AppScreen {
 
 
     public get cartBadge () {
-        return $('id=com.saucelabs.mydemoapp.android:id/cartTV');
+        if (driver.isAndroid)
+            return $('id=com.saucelabs.mydemoapp.android:id/cartTV');
+        else
+            return $('//XCUIElementTypeImage[@name="GrayRoundView Icons"]/../XCUIElementTypeStaticText');
     }
 
     constructor () {
-
-         super('~Displays number of items in your cart');
+        if (driver.isAndroid)
+            super('~Displays number of items in your cart');
+        else 
+            super('~Menu Icons');
+         
 
     }
 
@@ -24,11 +30,14 @@ class MenuScreen extends AppScreen {
 
     public async getCartAmount ():Promise<number> {
         const element = await this.cartBadge;
-        if (!await element.isDisplayed()) {
+        if (!await element.isExisting()) {
             return await 0;
         }
 
-        return parseInt(await element.getAttribute('text'));
+        if (driver.isAndroid) 
+            return parseInt(await element.getAttribute('text'));
+        else 
+            return parseInt(await element.getAttribute('value'));
     }
 
 }

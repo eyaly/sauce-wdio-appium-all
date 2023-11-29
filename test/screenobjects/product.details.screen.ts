@@ -8,7 +8,10 @@ import {swipeElement} from "../helpers/utils";
 class ProductDetailsScreen extends AppScreen {
 
     public get addToCartBtn () {
-        return $('~Tap to add product to cart');
+        if (driver.isAndroid)
+            return $('~Tap to add product to cart');
+        else
+            return $('~AddToCart');
     }
 
     constructor () {
