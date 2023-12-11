@@ -47,6 +47,7 @@ Here is an example for the same native app page and how the App source looks lik
 
     ```
 
+bla
 
     ```bash
     public async addProductToCart () {
