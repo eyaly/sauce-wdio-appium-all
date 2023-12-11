@@ -47,7 +47,7 @@ Here is an example for the same native app page and how the App source looks lik
 
     ```
 
-bla
+And using this get method to click on this button:    
 
     ```bash
     public async addProductToCart () {
