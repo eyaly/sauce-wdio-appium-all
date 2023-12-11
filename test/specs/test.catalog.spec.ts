@@ -5,6 +5,7 @@ import ProductDetailsScreen from '../screenobjects/product.details.screen'
 describe('Catalog tests', () => {
 
     beforeEach(async () => {
+        await browser.execute('sauce:context=############## Start BeforeEach-hook ##############');
         // Restart the app before each session, only not for the first session
         await restartApp();
         await CatalogScreen.waitForIsShown(true);
