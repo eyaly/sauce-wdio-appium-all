@@ -47,7 +47,17 @@ Here is an example for the same native app page and how the App source looks lik
 
 ```
    
-   And using this get method to click on this button:
+And using this get method to click on this button:    
+
+   ```bash
+    public get addToCartBtn () {
+        if (driver.isAndroid)
+            return $('~Tap to add product to cart');
+        else
+            return $('~AddToCart');
+    }    
+
+```
 
 ```bash
     public async addProductToCart () {
