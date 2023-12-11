@@ -43,7 +43,8 @@ Here is an example for the same native app page and how the App source looks lik
             return $('~Tap to add product to cart');
         else
             return $('~AddToCart');
-    }
+    }    
+
 ```
    
    And using this get method to click on this button:
@@ -52,6 +53,7 @@ Here is an example for the same native app page and how the App source looks lik
     public async addProductToCart () {
         await this.addToCartBtn.click()
     }
+         
 ```
 
 2. <b>Divergent Business Flows between Android and iOS</b>    
