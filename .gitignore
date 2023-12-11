@@ -23,7 +23,7 @@ hs_err_pid*
 
 # Extra folders
 .tmp/
-**/apps/
+# **/apps/
 *.xml
 v6/
 **/artifacts/

@@ -27,12 +27,11 @@ export const config: Options.Testrunner = {
     //
     user: process.env.SAUCE_USERNAME,
     key: process.env.SAUCE_ACCESS_KEY,
-    //
     // If you run your tests on Sauce Labs you can specify the region you want to run your tests
-    // in via the `region` property. Available short handles for regions are `us` (default), `eu` and `apac`.
+    // in via the `region` property. Available short handles for regions are `us` (default) and `eu`.
     // These regions are used for the Sauce Labs VM cloud and the Sauce Labs Real Device Cloud.
-    // If you don't provide the region it will default for the `us`
-    region: 'eu',
+    // If you don't provide the region, it defaults to `us`.
+    region:  (process.env.REGION || 'us'),
     //
     // ==================
     // Specify Test Files
@@ -79,18 +78,19 @@ export const config: Options.Testrunner = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [
-    // {
-    //     // capabilities for Appium web tests on a Sauce Android Emulator
-    //     platformName: 'Android',
-    //     'appium:app': 'storage:filename=my-demo-app-android.apk',
-    //     'appium:deviceName': 'Android GoogleAPI Emulator',
-    //     'appium:platformVersion': '12',
-    //     'appium:automationName': 'UiAutomator2',
-    //     'sauce:options': {
-    //         appiumVersion: '2.0.0',
-    //         build: buildName,
-    //     },
-    // },
+    {
+        // capabilities for Appium web tests on a Sauce Android Emulator
+        platformName: 'Android',
+        'appium:app': 'storage:filename=my-demo-app-android.apk',
+        'appium:deviceName': 'Android GoogleAPI Emulator',
+        'appium:platformVersion': '12',
+        'appium:automationName': 'UiAutomator2',
+        'appium:appWaitActivity': 'view.activities.MainActivity',
+        'sauce:options': {
+            appiumVersion: '2.0.0',
+            build: buildName,
+        },
+    },
     {
         // capabilities for Appium Android Native App tests on a Sauce Android Real Device
         platformName: 'Android',
@@ -99,24 +99,24 @@ export const config: Options.Testrunner = {
         'appium:platformVersion': '13',
         'appium:automationName': 'UiAutomator2',
         'sauce:options': {
-            appiumVersion: '2.0.0',
+            appiumVersion: 'latest',
             phoneOnly: 'true',
             build: buildName,
         },
     },
 
-    // {
-    //     // capabilities for Appium web tests on a Sauce iOS Simulator
-    //     platformName: 'iOS',
-    //     browserName: 'Safari',
-    //     'appium:deviceName': 'iPhone Instant Simulator',
-    //     'appium:platformVersion': 'current_major',
-    //     'appium:automationName': 'XCuiTest',
-    //     'sauce:options': {
-    //         appiumVersion: '2.0.0',
-    //         build: buildName,
-    //     },
-    // },
+    {
+        // capabilities for Appium web tests on a Sauce iOS Simulator
+        platformName: 'iOS',
+        'appium:app': 'storage:filename=SauceLabs-Demo-App.Simulator.zip',
+        'appium:deviceName': 'iPhone Instant Simulator',
+        'appium:platformVersion': 'current_major',
+        'appium:automationName': 'XCuiTest',
+        'sauce:options': {
+            appiumVersion: '2.0.0',
+            build: buildName,
+        },
+    },
 
     {
         // capabilities for Appium ios Native App tests on a Sauce iOS Real Device
@@ -126,7 +126,7 @@ export const config: Options.Testrunner = {
         'appium:platformVersion': '14',
         'appium:automationName': 'XCuiTest',
         'sauce:options': {
-            appiumVersion: '2.0.0',
+            appiumVersion: 'latest',
             phoneOnly: 'true',
             build: buildName,
         },

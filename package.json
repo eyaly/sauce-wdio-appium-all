@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "wdio": "npx wdio run ./wdio.conf.ts"
+    "test.saucelabs.eu": "REGION=eu npx wdio run ./wdio.conf.ts",
+    "test.saucelabs.us": "npx wdio run ./wdio.conf.ts"
   },
   "author": "",
   "license": "ISC",
