@@ -1,7 +1,76 @@
 # WebdriverIO: Native App Automation Across Platforms
 
-This repository contains a WebdriverIO Native App testing:
+Cross-platform mobile automation using Page Object Model (POM).   
+This project has WebdriverIO 8 tests with mocha and typescript, followed by the page objects pattern running on the Sauce Labs platform.   
 
+Features:
+- Cloud testing Integration with Sauce Labs
+- Page Object Pattern
+- Cross platform support
+  - Android real device
+  - iOS real device
+  - Android emulator
+  - iOS simulator
+- Cross platform parallel execution
+- Appium
+
+
+## Why I developed this project?
+I developed this project to understand how to run the same test on Android and iOS OS.   
+### The main challenges
+
+The main challenges to run the same test on Android and iOS OS are:
+1.	<b>Selectors</b>    
+Selectors (or locators) are essentially mechanisms used to identify and interact with elements within a mobile application's user interface. They help the test scripts locate buttons, text fields, checkboxes, and other interactive components to simulate user interactions accurately.    
+However, Android and iOS applications are built using distinct UI frameworks and guidelines, leading to variations in how elements are represented in the UI hierarchy.        
+Here is an example for the same native app page and how the App source looks like in Android:
+      <img src="./graphics/myDemoApp_ProductPage_Android.png" alt="androidAppSource"/>    
+      and in iOS
+      <img src="./graphics/myDemoApp_ProductPage_iOS.png" alt="iOSAppSource"/>
+2. <b>Divergent Business Flows between Android and iOS</b>   
+   Developing Appium tests to be executed on both Android and iOS platforms introduces another significant challenge: the potential variance in business flows or user interactions between the two operating systems. This difference arises from the reality that many organizations maintain separate teams for Android and iOS development, leading to platform-specific design and user experience considerations.
+
+
+### The Approaches
+1. <b>Selectors</b>    
+   I use cross-platform mobile automation using Page Object Model (POM) 
+   For each screen (I call 'screen' for a Native App page) I defined 'get' methods to return the locators. 
+   For example:
+
+   ```bash
+    public get addToCartBtn () {
+        if (driver.isAndroid)
+            return $('~Tap to add product to cart');
+        else
+            return $('~AddToCart');
+    }
+```
+   
+   And using this get method to click on this button:
+
+```bash
+    public async addProductToCart () {
+        await this.addToCartBtn.click()
+    }
+```
+
+2. <b>Divergent Business Flows between Android and iOS</b>    
+   Sometime during run time, we need to perform a different approach depend if we run on Android device or iOS device.
+   We can do that by calling the driver method 'isAndroid'.    
+   For example, calling the Appium commands to terminte and activate the app:
+```bash
+export async function restartApp() {
+    if (!driver.firstAppStart) {
+        if (driver.isAndroid) {
+            await driver.terminateApp("com.saucelabs.mydemoapp.android");
+            await driver.activateApp("com.saucelabs.mydemoapp.android");
+        }
+        else {
+            await driver.terminateApp("com.saucelabs.mydemoapp.ios");
+            await driver.activateApp("com.saucelabs.mydemoapp.ios");
+        }
+    }
+```
 
 ## Install dependencies
 

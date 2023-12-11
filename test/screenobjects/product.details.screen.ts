@@ -27,9 +27,6 @@ class ProductDetailsScreen extends AppScreen {
 
     public async addProductToCart () {
 
-        //  const element: WebdriverIO.Element = await $('~Scrollview manages views in given screen size');
-        // //
-        // await swipeElement(element, "up")
         await this.addToCartBtn.click()
     }
 
