@@ -45,26 +45,15 @@ Here is an example for the same native app page and how the App source looks lik
             return $('~AddToCart');
     }    
 
-```
-   
-And using this get method to click on this button:    
+    ```
 
-   ```bash
-    public get addToCartBtn () {
-        if (driver.isAndroid)
-            return $('~Tap to add product to cart');
-        else
-            return $('~AddToCart');
-    }    
 
-```
-
-```bash
+    ```bash
     public async addProductToCart () {
         await this.addToCartBtn.click()
     }
          
-```
+    ```
 
 2. <b>Divergent Business Flows between Android and iOS</b>    
    Sometime during run time, we need to perform a different approach depend if we run on Android device or iOS device.
